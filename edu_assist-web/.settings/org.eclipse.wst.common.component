@@ -58,6 +58,12 @@
         <dependent-module archiveName="edu_assist-dao-student-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/edu_assist-dao-student/edu_assist-dao-student">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="edu_assist-batchinsert-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/edu_assist-batchinsert/edu_assist-batchinsert">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="edu_assist-role-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/edu_assist-role/edu_assist-role">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="edu_assist-service-classes-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/edu_assist-service-classes/edu_assist-service-classes">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -74,9 +80,6 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="edu_assist-domain-teacher-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/edu_assist-domain-teacher/edu_assist-domain-teacher">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="edu_assist-role-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/edu_assist-role/edu_assist-role">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="edu_assist-domain-classes-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/edu_assist-domain-classes/edu_assist-domain-classes">
