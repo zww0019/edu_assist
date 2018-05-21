@@ -13,7 +13,7 @@ node {
     env.BUILDIMG=imageName
     stage "Maven build"
 		sh "ls warzone-parent"
-        sh "mvn -f warzone-parent/pom.xml clean package"
+        sh "mvn clean package"
     stage "Build"
         sh "docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
     
