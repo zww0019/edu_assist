@@ -184,6 +184,9 @@
 					<source>1.8</source>
 					<target>1.8</target>
 					<fork>true</fork>
+					<compilerArguments>
+					<extdirs>${basedir}/src/main/webapp/WEB-INF/lib</extdirs>
+					</compilerArguments>
 					<meminitial>512m</meminitial>
 					<maxmem>1024m</maxmem>
 				</configuration>
