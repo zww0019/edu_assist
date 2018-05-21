@@ -299,7 +299,7 @@
 
 	<modules>
 		<module>../warzone-test</module>
-		<module>../edu_assist-batchoperate</module>
+		<module>../edu_assist-batchinsert</module>
 		<module>../edu_assist-dao-classes</module>
 		<module>../edu_assist-dao-course</module>
 		<module>../edu_assist-dao-session</module>
