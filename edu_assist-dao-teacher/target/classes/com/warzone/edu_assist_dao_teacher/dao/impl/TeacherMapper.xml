@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.warzone.edu_assist_dao_teacher.dao.TeacherDAO">
+    	<insert id="insertTeacher" parameterType="com.warzone.edu_assist_dao_teacher.dto.TeacherDTO">
+    		insert into teacher(teacherid,name,sex) values(#{teacherid},#{name},#{sex})
+    	</insert>
+    	<select id="selectTeacherByTeacherid" resultType="com.warzone.edu_assist_dao_teacher.dto.TeacherDTO">
+    		select * from teacher where teacherid=#{param1}
+    	</select>
+    </mapper>

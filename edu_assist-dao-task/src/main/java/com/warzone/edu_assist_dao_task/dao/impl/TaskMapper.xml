@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.warzone.edu_assist_dao_task.dao.TaskDAO">
+	<resultMap type="com.warzone.edu_assist_dao_task.dto.TaskDTO" id="taskMap">
+		<id property="task_id" column="task_id"/>
+		<result property="classes_id" column="classes_id"/>
+		<result property="end_date" column="end_date"/>
+		<result property="pub_date" column="pub_date"/>
+		<result property="task_content" column="task_content"/>
+		<result property="task_directory" column="task_directory"/>
+		<result property="task_name" column="task_name"/>
+		<collection property="taskComplectionDTOs" ofType="com.warzone.edu_assist_dao_task.dto.TaskComplectionDTO">
+			<id property="student_id" column="student_id"/>
+			<result property="task_id" column="task_id"/>
+			<result property="student_name" column="student_name"/>
+			<result property="classa" column="classa"/>
+			<result property="complete_status" column="complete_status"/>
+			<result property="task_position" column="task_position"/>
+		</collection>
+	</resultMap>
+	<insert id ="batchInsertTaskComplectionMeasure" parameterType="java.util.List" >
+           insert into task_completion
+           (task_id,student_id,student_name,classa)
+           values
+            <foreach collection ="list" item="completionmeasure" index= "index" separator =",">
+                (#{completionmeasure.task_id},#{completionmeasure.student_id},#{completionmeasure.student_name},#{completionmeasure.classa})
+            </foreach >
+     </insert >
+	<delete id="deleteTaskByTask_id">
+		delete from task where task_id=#{param1}
+	</delete>
+	<select id="findTaskByClassid" resultMap="taskMap" >
+		select *
+		from task
+		left join task_completion on task.task_id = task_completion.task_id
+		 where task.classes_id=#{param1} 
+	</select>
+	<insert id="insertTask" parameterType="com.warzone.edu_assist_dao_task.dto.TaskDTO">
+		<selectKey keyProperty="task_id" resultType="int">  
+        	select LAST_INSERT_ID()  
+        </selectKey>
+		insert into task(classes_id,end_date,pub_date,task_content,task_directory,task_name,affix_position) 
+		values(#{classes_id},#{end_date},#{pub_date},#{task_content},#{task_directory},#{task_name},#{affix_position})
+	</insert>
+	<update id="updateContent" >
+		update task set task_content=#{param1} where task_id=#{param2}
+	</update>
+	<update id="updateTaskComplectionStatus">
+		update task_completion set complete_status='1' ,task_position=#{param3}  where task_id=#{param1} and student_id=#{param2}
+	</update>
+	<update id="updateTaskEndDate" >
+		update task set end_date=#{param2} where task_id=#{param1}
+	</update>
+	<update id="updateTaskDelayStatus">
+		update task_delay set status=#{param4},verifier=#{param3} where task_id=#{param1} and student_id=#{param2}
+	</update>
+	<select id="findTaskDelayDTOsByClassesid" resultType="com.warzone.edu_assist_dao_task.dto.TaskDelayDTO">
+		select * from task_delay
+		left join task on task_delay.task_id = task.task_id
+		where task.classes_id=#{param1}
+	</select>
+	<select id="findTaskDelayDTOByTask_id" resultType="com.warzone.edu_assist_dao_task.dto.TaskDelayDTO">
+		select * from task_delay where task_id = #{param1}
+	</select>
+	<update id="updatePath" >
+		update task set task_directory=#{param2} where task_id=#{param1}
+	</update>
+	<update id="updateTaskAffix">
+		update task set affix_position=#{param2} where task_id=#{param1}
+	</update>
+	<select id="selectTaskByTaskid" resultType="com.warzone.edu_assist_dao_task.dto.TaskDTO">
+		select * from task where task_id=#{param1}
+	</select>
+</mapper>

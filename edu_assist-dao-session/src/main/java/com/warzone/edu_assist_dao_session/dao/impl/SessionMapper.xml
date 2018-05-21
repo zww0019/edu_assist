@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.warzone.edu_assist_dao_session.dao.SessionDAO">
+	<resultMap type="com.warzone.edu_assist_domain_session.Academic_year" id="academic_yearMap">
+		<result property="start_year" column="start_year"/>
+		<result property="end_year" column="end_year"/>
+		<collection property="semesters" ofType="com.warzone.edu_assist_domain_session.Semester">
+			<result property="semester" column="semester"/>
+			<collection property="sessions" ofType="com.warzone.edu_assist_domain_session.Session">
+				<id property="session_id" column="session_id"/>
+				<result property="session_name" column="session_name"/>
+				<result property="completion_status" column="completion_status"/>
+				<association property="course" javaType="com.warzone.edu_assist_domain_course.Course">
+					<id property="course_id" column="course_id"/>
+					<result property="course_name" column="course_name"/>
+				</association>
+			</collection>
+		</collection>
+	</resultMap>
+	
+	<select id="selectSessionByTeacher_id" parameterType="java.lang.String" resultMap="academic_yearMap">
+	select
+		start_year,
+		end_year,
+		semester,
+		`session`.session_id,
+		session_name,
+		completion_status,
+		`session`.course_id,
+		course.course_name
+	from academicyear
+		left join session on academicyear.session_id = session.session_id
+		left join course on session.course_id = course.course_id
+	where session.lecturer_id=#{param1} order by start_year desc
+	</select>
+	
+	<insert id="insertSession" parameterType="com.warzone.edu_assist_dao_session.dto.SessionDTO">
+		<selectKey keyProperty="session_id" resultType="int">  
+        	select LAST_INSERT_ID()  
+        </selectKey>  
+		insert into session(lecturer_id,session_name,course_id) values(#{lecturer_id},#{session_name},#{course_id})
+	</insert>
+	<update id="updateSessionName" >
+		update session 
+		<set>
+			<if test="session_name!=null">session_name=#{param2},</if>
+		</set>
+		where session_id = #{param1}
+	</update>
+	<delete id="deleteSession" >
+		delete from session where session_id=#{param1}
+	</delete>
+	<update id="updateSessionStatus">
+		update session set completion_status='1' where session_id=#{param1}
+	 </update>
+	 <select id="selectSessinBySessionid" resultMap="academic_yearMap">
+	 	select
+		start_year,
+		end_year,
+		semester,
+		`session`.session_id,
+		session_name,
+		completion_status,
+		`session`.course_id,
+		course.course_name
+	from academicyear
+		left join session on academicyear.session_id = session.session_id
+		left join course on session.course_id = course.course_id
+	where session.session_id=#{param1}
+	 </select>
+</mapper>

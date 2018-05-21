@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.warzone.edu_assist_dao_user.dao.UserDAO">
+	<select id="selectUserByUsernameAndAuthority" resultType="com.warzone.edu_assist_domain_user.User" >
+		select * from user where userid = #{param1} and authority = #{param2}
+	</select>
+	<delete id="deleteUserByUsername" parameterType="java.lang.String">
+		delete from user where userid = #{param1}
+	</delete>
+	<update id="updateUserByUsername" parameterType="com.warzone.edu_assist_dao_user.dto.UserDTO">
+		update user set password=#{password} where userid=#{userid}
+	</update>
+	<insert id="insertUser" parameterType="com.warzone.edu_assist_dao_user.dto.UserDTO">
+		insert into user(userid,password,authority) values(#{userid},#{password},#{authority})
+	</insert>
+	<insert id ="batchInsertStudentUser" parameterType="java.util.List" >
+           insert into user
+           (userid,password,authority)
+           values
+            <foreach collection ="list" item="user" index= "index" separator =",">
+                (#{user.userid},#{user.password},#{user.authority})
+            </foreach >
+     </insert >
+</mapper>

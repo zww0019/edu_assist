@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.warzone.edu_assist_dao_student.dao.StudentDAO">
+	<insert id ="batchInsertStudentInfo" parameterType="java.util.List" >
+           insert into student
+           (studentid,classa,name,sex)
+           values
+            <foreach collection ="list" item="student" index= "index" separator =",">
+                (#{student.studentid},#{student.classa},#{student.name},#{student.sex})
+            </foreach >
+     </insert >
+     <insert id="insertStudent" parameterType="com.warzone.edu_assist_dao_student.dto.StudentDTO">
+     	insert into student(studentid,classa,name,sex) values(#{studentid},#{classa},#{name},#{sex})
+     </insert>
+     <delete id="deleteStudentByID" >
+     	delete from student where studentid=#{param1}
+     </delete>
+     <select id="selectStudentByClassid" resultType="com.warzone.edu_assist_dao_student.dto.StudentDTO">
+     	select * from classes_student,student where classes_student.classes_id=#{param1} and  classes_student.student_id=student.studentid 
+     </select>
+     <insert id ="batchInsertAssocationClassesAndStudent" parameterType="java.util.List" >
+           insert into classes_student
+           (classes_id,student_id)
+           values
+            <foreach collection ="list" item="assocationCS" index= "index" separator =",">
+                (#{assocationCS.classes_id},#{assocationCS.student_id})
+            </foreach >
+     </insert >
+     <select id="selectStudentByStudentid" resultType="com.warzone.edu_assist_dao_student.dto.StudentDTO">
+     	select * from student where studentid=#{param1}
+     </select>
+</mapper>

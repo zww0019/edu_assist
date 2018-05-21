@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.warzone.edu_assist_dao_course.dao.CourseDAO">
+	<select id="selectCourseByID" resultType="com.warzone.edu_assist_dao_course.dto.CourseDTO">
+		select * from course where course_id = #{param1}
+	</select>
+	<delete id="deleteCourseByID" >
+		delete from course where course_id=#{param1}
+	</delete>
+	<insert id="insertCourse" parameterType="com.warzone.edu_assist_dao_course.dto.CourseDTO">
+		<selectKey keyProperty="course_id" resultType="int">  
+        	select LAST_INSERT_ID()  
+        </selectKey>  
+		insert into course(course_name) values(#{course_name})
+	</insert>
+	<update id="updateCourse" parameterType="com.warzone.edu_assist_dao_course.dto.CourseDTO">
+		update course set course_name=#{course_name} where course_id=#{course_id}
+	</update>
+	<select id="selectCourseByCourseName" resultType="com.warzone.edu_assist_dao_course.dto.CourseDTO" >
+		select * from course where course_name=#{param1}
+	</select>
+</mapper>

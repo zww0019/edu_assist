@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.warzone.edu_assist_dao_classes.dao.ClassesDAO">
+
+	<delete id="deleteClassesByClassID" >
+		delete from classes where classes_id=#{param1}
+	</delete>
+	<insert id="insertClasses" parameterType="com.warzone.edu_assist_dao_classes.dto.ClassesDTO">
+		<selectKey keyProperty="classes_id" resultType="int">  
+        	select LAST_INSERT_ID()  
+        </selectKey>  
+		insert into classes(classes_name,session_id) values(#{classes_name},#{session_id})
+	</insert>
+	<select id="selectClassBySessionID" resultType="com.warzone.edu_assist_dao_classes.dto.ClassesDTO">
+		select * 
+		from classes 
+		where session_id=#{param1}
+	</select>
+	<select id="selectClassesByStudentid" resultType="com.warzone.edu_assist_dao_classes.dto.ClassesDTO">
+		select * 
+		from classes_student
+		left join classes on classes_student.classes_id=classes.classes_id
+		where classes_student.student_id=#{param1}
+		
+	</select>
+	
+	
+</mapper>

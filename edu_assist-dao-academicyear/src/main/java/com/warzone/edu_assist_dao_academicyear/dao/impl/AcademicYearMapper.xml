@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.warzone.edu_assist_dao_academicyear.dao.AcademicYearDAO">
+	<insert id="insertAcademicYear" parameterType="com.warzone.edu_assist_dao_academicyear.dto.AcademicYearDTO">
+		insert into academicyear(start_year,end_year,semester,session_id) values(#{start_year},#{end_year},#{semester},#{session_id})
+	</insert>
+	<select id="selectAcadeYear" parameterType="com.warzone.edu_assist_dao_academicyear.dto.AcademicYearDTO" resultType="com.warzone.edu_assist_dao_academicyear.dto.AcademicYearDTO">
+		select * from academicyear where start_year=#{start_year} and end_year=#{end_year} and semester=#{semester}
+	</select>
+</mapper>
