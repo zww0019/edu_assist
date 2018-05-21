@@ -296,6 +296,7 @@
 <!--             <url>http://dev.kdphoto.cn:10088/nexus/content/repositories/EduassistSnapshots/</url> -->
 <!--         </snapshotRepository> -->
 <!--     </distributionManagement> -->
+
 	<modules>
 		<module>../warzone-test</module>
 		<module>../edu_assist-batchoperate</module>
