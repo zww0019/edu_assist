@@ -12,12 +12,8 @@ node {
     imageName = "${registryHost}/${appName}:${tag}"
     env.BUILDIMG=imageName
     stage "Maven build"
-        //sh "mvn clean package"
-        sh "cd warzone-parent"
 		sh "ls warzone-parent"
         sh "mvn -f warzone-parent/pom.xml clean package"
-        sh "mvn -f edu_assist-web/pom.xml clean package"
-        sh "ls edu_assist-web"
     stage "Build"
         sh "docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
     
