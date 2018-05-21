@@ -298,40 +298,43 @@
 <!--     </distributionManagement> -->
 
 	<modules>
-		<module>../warzone-test</module>
-		<module>../edu_assist-batchinsert</module>
-		<module>../edu_assist-dao-classes</module>
-		<module>../edu_assist-dao-course</module>
-		<module>../edu_assist-dao-session</module>
-		<module>../edu_assist-dao-student</module>
-		<module>../edu_assist-dao-task</module>
-		<module>../edu_assist-dao-user</module>
-		<module>../edu_assist-domain-classes</module>
-		<module>../edu_assist-domain-course</module>
-		<module>../edu_assist-domain-session</module>
-		<module>../edu_assist-domain-student</module>
-		<module>../edu_assist-domain-task</module>
-		<module>../edu_assist-domain-teacher</module>
-		<module>../edu_assist-domain-user</module>
-		<module>../edu_assist-import</module>
-		<module>../edu_assist-repository-session</module>
-		<module>../edu_assist-repository-student</module>
-		<module>../edu_assist-repository-task</module>
-		<module>../edu_assist-repository-user</module>
-		<module>../edu_assist-role</module>
-		<module>../edu_assist-service-session</module>
-		<module>../edu_assist-service-student</module>
-		<module>../edu_assist-service-task</module>
-		<module>../edu_assist-service-user</module>
-		<module>../edu_assist-status</module>
-		<module>../edu_assist-util</module>
-		<module>../warzone-exception</module>
-		<module>../warzone-util</module>
-		<module>../edu_assist-dao-academicyear</module>
-		<module>../edu_assist-repository-classes</module>
-		<module>../edu_assist-dao-teacher</module>
-		<module>../edu_assist-repository-teacher</module>
-		<module>../edu_assist-service-classes</module>
-		<module>../edu_assist-service-teacher</module>
+
+
+	<module>../edu_assist-batchinsert</module>
+	<module>../edu_assist-dao-academicyear</module>
+	<module>../edu_assist-dao-classes</module>
+	<module>../edu_assist-dao-course</module>
+	<module>../edu_assist-dao-session</module>
+	<module>../edu_assist-dao-student</module>
+	<module>../edu_assist-dao-task</module>
+	<module>../edu_assist-dao-teacher</module>
+	<module>../edu_assist-dao-user</module>
+	<module>../edu_assist-domain-classes</module>
+	<module>../edu_assist-domain-course</module>
+	<module>../edu_assist-domain-session</module>
+	<module>../edu_assist-domain-student</module>
+	<module>../edu_assist-domain-task</module>
+	<module>../edu_assist-domain-teacher</module>
+	<module>../edu_assist-domain-user</module>
+	<module>../edu_assist-import</module>
+	<module>../edu_assist-repository-classes</module>
+	<module>../edu_assist-repository-session</module>
+	<module>../edu_assist-repository-student</module>
+	<module>../edu_assist-repository-task</module>
+	<module>../edu_assist-repository-teacher</module>
+	<module>../edu_assist-repository-user</module>
+	<module>../edu_assist-role</module>
+	<module>../edu_assist-service-classes</module>
+	<module>../edu_assist-service-session</module>
+	<module>../edu_assist-service-student</module>
+	<module>../edu_assist-service-task</module>
+	<module>../edu_assist-service-teacher</module>
+	<module>../edu_assist-service-user</module>
+	<module>../edu_assist-status</module>
+	<module>../edu_assist-util</module>
+	<module>../edu_assist-web</module>
+	<module>../warzone-exception</module>
+	<module>../warzone-test</module>
+	<module>../warzone-util</module>
 	</modules>
 </project>
