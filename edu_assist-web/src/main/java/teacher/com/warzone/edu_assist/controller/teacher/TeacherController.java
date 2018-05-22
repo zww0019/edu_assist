@@ -178,6 +178,7 @@ public class TeacherController {
 		ModelAndView modelAndView = new ModelAndView();
 		User user = (User) request.getSession().getAttribute("user");
 		Academic_year academic_year = sessionService.getSemester(user.getUserid(), start_year, end_year, semester);
+		System.out.println(academic_year.getSemesters().get(0).getSessions().get(0).getCourse().getCourse_name());
 		modelAndView.addObject("academic_year", academic_year);
 		modelAndView.setViewName("teacher/session/semester_main/semester_main");
 		return modelAndView;
