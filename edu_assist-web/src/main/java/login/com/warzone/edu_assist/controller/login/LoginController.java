@@ -27,7 +27,7 @@ public class LoginController {
 		String sion_captcha = (String) request.getSession().getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
 		ModelMap model = new ModelMap();
 		String view ="login/index";
-		System.out.println("这时一个测试语句");
+		System.out.println("AAAAAAAAAAAAAAAAAAAA这时一个测试语句");
 		if(sion_captcha.equals(captcha)){
 			System.out.println(iden);
 			System.out.println(Identity.学生.toString());
