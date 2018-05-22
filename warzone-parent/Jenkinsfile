@@ -1,36 +1,24 @@
 node {
-
     checkout scm
-
     env.DOCKER_API_VERSION="1.23"
-    
     sh "git rev-parse --short HEAD > commit-id"
-
     tag = readFile('commit-id').replace("\n", "").replace("\r", "")
     appName = "eduassistweb"
     registryHost = "192.168.1.118:5000"
     imageName = "${registryHost}/${appName}:${tag}"
-    
     env.BUILDIMG=imageName
     stage "Maven build"
-        sh "mvn -f warzone-parent/pom.xml clean package"
-       	sh "mv edu_assist-web/target/edu_assist-web.war warzone-parent"
+        sh "mvn -f warzone-parent/pom.xml clean package"  //maven打包
+       	sh "mv edu_assist-web/target/edu_assist-web.war warzone-parent" //将构建产物移动到项目根目录
     stage "Build"
-        sh "docker build -t ${imageName} -f warzone-parent/Dockerfile warzone-parent"
-    
+        sh "docker build -t ${imageName} -f warzone-parent/Dockerfile warzone-parent" //通过Dockerfile文件生成服务镜像
     stage "Push"
-        
-        sh "docker push ${imageName}"
-
+        sh "docker push ${imageName}" //将服务镜像上传到docker私有仓库
     stage "Deploy"
-
-        sh "sed 's#192.168.1.118:5000/eduassistweb:latest#'$BUILDIMG'#' warzone-parent/deployment.yaml | kubectl apply -f -"
-    
+    	//将服务镜像部署到k8s集群
+        sh "sed 's#192.168.1.118:5000/eduassistweb:latest#'$BUILDIMG'#' warzone-parent/deployment.yaml | kubectl apply -f -"  
     stage "release"
-    
-      	sh "kubectl apply -f warzone-parent/ingress.yaml"
-    
+      	sh "kubectl apply -f warzone-parent/ingress.yaml" //为新的服务配置路由规则
     stage "verification"
-    
-        sh "kubectl rollout status deployment/edu-assist-web"
+        sh "kubectl rollout status deployment/edu-assist-web" //返回部署结果
 }
