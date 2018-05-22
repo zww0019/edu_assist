@@ -24,6 +24,6 @@ node {
 
     stage "Deploy"
 
-        sh "sed 's#192.168.1.118:5000/hello-kenzan:latest#'$BUILDIMG'#' applications/hello-kenzan/k8s/deployment.yaml | kubectl apply -f -"
-        sh "kubectl rollout status deployment/hello-kenzan"
+        sh "sed 's#192.168.1.118:5000/tomcat:latest#'$BUILDIMG'#' warzone-parent/deployment.yaml | kubectl apply -f -"
+        sh "kubectl rollout status deployment/edu-assist-web"
 }

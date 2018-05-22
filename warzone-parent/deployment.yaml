@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: edu-assist-web
+  labels:
+    app: edu-assist-web
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: edu-assist-web
+    tier: edu-assist-web
+  #type: NodePort
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: edu-assist-web
+  labels:
+    app: edu-assist-web
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: edu-assist
+        tier: edu-assist
+    spec:
+      containers:
+      - image: 192.168.1.118:5000/eduassistweb:latest
+        name: edu-assist-web
+        ports:
+        - containerPort: 8080
+          name: edu-assist-web
