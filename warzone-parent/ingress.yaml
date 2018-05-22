@@ -10,7 +10,7 @@ spec:
   - host: eduassist.mics
     http:
       paths:
-      - path: /edu_assist-web/main/login
+      - path: /
         backend:
           serviceName: edu-assist-web
           servicePort: 8080
