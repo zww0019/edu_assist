@@ -7,7 +7,7 @@ node {
     sh "git rev-parse --short HEAD > commit-id"
 
     tag = readFile('commit-id').replace("\n", "").replace("\r", "")
-    appName = "hello-kenzan"
+    appName = "eduassistweb"
     registryHost = "192.168.1.118:5000"
     imageName = "${registryHost}/${appName}:${tag}"
     env.BUILDIMG=imageName
@@ -15,7 +15,7 @@ node {
         sh "mvn -f warzone-parent/pom.xml clean package"
         sh "ls edu_assist-web/target"
     stage "Build"
-        sh "docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
+        sh "docker build -t ${imageName} -f warzone-parent/Dockerfile applications/eduassistweb"
     
     stage "Push"
         
