@@ -25,5 +25,12 @@ node {
     stage "Deploy"
 
         sh "sed 's#192.168.1.118:5000/eduassistweb:latest#'$BUILDIMG'#' warzone-parent/deployment.yaml | kubectl apply -f -"
+    
+    stage "release"
+    
+      	kubectl apply -f warzone-parent/ingress.yaml
+    
+    stage "verification"
+    
         sh "kubectl rollout status deployment/edu-assist-web"
 }
