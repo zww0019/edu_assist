@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: eduassist
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+spec:
+  rules:
+  - host: eduassist.mics
+    http:
+      paths:
+      - path: /v1/login
+        backend:
+          serviceName: edu-assist-web
+          servicePort: 8080
