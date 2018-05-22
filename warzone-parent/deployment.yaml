@@ -12,7 +12,6 @@ spec:
     app: edu-assist-web
     tier: edu-assist-web
   #type: NodePort
-
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
