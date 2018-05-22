@@ -28,7 +28,7 @@ node {
     
     stage "release"
     
-      	kubectl apply -f warzone-parent/ingress.yaml
+      	sh "kubectl apply -f warzone-parent/ingress.yaml"
     
     stage "verification"
     
