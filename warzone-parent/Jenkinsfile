@@ -10,10 +10,11 @@ node {
     appName = "eduassistweb"
     registryHost = "192.168.1.118:5000"
     imageName = "${registryHost}/${appName}:${tag}"
+    
     env.BUILDIMG=imageName
     stage "Maven build"
         sh "mvn -f warzone-parent/pom.xml clean package"
-        sh "ls edu_assist-web/target"
+       	sh "mv edu_assist-web/target/edu_assist-web.war warzone-parent"
     stage "Build"
         sh "docker build -t ${imageName} -f warzone-parent/Dockerfile warzone-parent"
     
