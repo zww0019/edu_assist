@@ -15,7 +15,7 @@ node {
         sh "mvn -f warzone-parent/pom.xml clean package"
         sh "ls edu_assist-web/target"
     stage "Build"
-        sh "docker build -t ${imageName} -f warzone-parent/Dockerfile applications/eduassistweb"
+        sh "docker build -t ${imageName} -f warzone-parent/Dockerfile warzone-parent"
     
     stage "Push"
         
