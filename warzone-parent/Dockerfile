@@ -1,0 +1,4 @@
+FROM 192.168.1.118:5000/tomcat:latest
+
+MAINTAINER ZWW
+
